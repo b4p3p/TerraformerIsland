@@ -1,0 +1,13 @@
+c:\users\b4p3p\documents\visual studio 2013\Projects\terraformerIsland\terraformerIsland\bin\Debug\terraformerIsland.exe.config
+C:\Users\b4p3p\Documents\Visual Studio 2013\Projects\terraformerIsland\terraformerIsland\bin\Debug\terraformerIsland.exe
+C:\Users\b4p3p\Documents\Visual Studio 2013\Projects\terraformerIsland\terraformerIsland\bin\Debug\terraformerIsland.pdb
+C:\Users\b4p3p\Documents\Visual Studio 2013\Projects\terraformerIsland\terraformerIsland\obj\Debug\terraformerIsland.csprojResolveAssemblyReference.cache
+C:\Users\b4p3p\Documents\Visual Studio 2013\Projects\terraformerIsland\terraformerIsland\obj\Debug\MainWindow.baml
+C:\Users\b4p3p\Documents\Visual Studio 2013\Projects\terraformerIsland\terraformerIsland\obj\Debug\MainWindow.g.cs
+C:\Users\b4p3p\Documents\Visual Studio 2013\Projects\terraformerIsland\terraformerIsland\obj\Debug\App.g.cs
+C:\Users\b4p3p\Documents\Visual Studio 2013\Projects\terraformerIsland\terraformerIsland\obj\Debug\terraformerIsland_MarkupCompile.cache
+C:\Users\b4p3p\Documents\Visual Studio 2013\Projects\terraformerIsland\terraformerIsland\obj\Debug\terraformerIsland.g.resources
+C:\Users\b4p3p\Documents\Visual Studio 2013\Projects\terraformerIsland\terraformerIsland\obj\Debug\terraformerIsland.Properties.Resources.resources
+C:\Users\b4p3p\Documents\Visual Studio 2013\Projects\terraformerIsland\terraformerIsland\obj\Debug\terraformerIsland.csproj.GenerateResource.Cache
+C:\Users\b4p3p\Documents\Visual Studio 2013\Projects\terraformerIsland\terraformerIsland\obj\Debug\terraformerIsland.exe
+C:\Users\b4p3p\Documents\Visual Studio 2013\Projects\terraformerIsland\terraformerIsland\obj\Debug\terraformerIsland.pdb
