@@ -4,52 +4,104 @@
         Title="TerraformerIsland" Height="600" Width="800"
         WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="334*"/>
-        </Grid.ColumnDefinitions>
+    
+    <TabControl>
+        
+        <TabItem Header="Grid" Width="100">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="334*"/>
+                </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Vertical" Grid.Column="0">
+                <StackPanel Orientation="Vertical" Grid.Column="0">
 
-            <Label HorizontalAlignment="Center">Zoom</Label>
-            <Slider x:Name="zoomSlider" Minimum="1" Maximum="2" Value="1" LargeChange="0.2"></Slider>
+                    <Label HorizontalAlignment="Center">Zoom</Label>
+                    <Slider x:Name="zoomSlider" Minimum="1" Maximum="2" Value="1" LargeChange="0.2"></Slider>
 
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <Label Content="Size:" Width="80"></Label>
-                <TextBox Name="txtSize" Text="16" Width="50" TextAlignment="Center" VerticalAlignment="Center"></TextBox>
-            </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label Content="Size:" Width="80"></Label>
+                        <TextBox Name="txtSize" Text="16" Width="50" TextAlignment="Center" VerticalAlignment="Center"></TextBox>
+                    </StackPanel>
 
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <Label Content="Water:" Width="80"></Label>
-                <TextBox Name="txtWater" Text="0,3" Width="50" TextAlignment="Center" VerticalAlignment="Center"></TextBox>
-            </StackPanel>
-            <Button Name="cmdInizializza" Click="cmdInizializza_Click" Content="Inizializza"></Button>
-            <Button Name="cmdNext" Click="cmdNext_Click" Content="Next 1" 
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label Content="Water:" Width="80"></Label>
+                        <TextBox Name="txtWater" Text="0,3" Width="50" TextAlignment="Center" VerticalAlignment="Center"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label Content="Tile size:" Width="80"></Label>
+                        <TextBox Name="txtTileSize" Text="4" Width="50" TextAlignment="Center" VerticalAlignment="Center"></TextBox>
+                    </StackPanel>
+
+                    <Button Name="cmdInit" Click="cmdInit_Click" Content="Init"></Button>
+                    <Button Name="cmdNext" Click="cmdNext_Click" Content="Next 1" 
                     Margin="0,10"></Button>
-            <Button Name="cmdGO" Click="cmdGO_Click" Content="GO" ></Button>
-        </StackPanel>
+                    <Button Name="cmdGO" Click="cmdGO_Click" Content="GO" ></Button>
+                </StackPanel>
 
-        <ScrollViewer Name="scrollViewer" Grid.Column="1" 
+                <ScrollViewer Name="scrollViewer" Grid.Column="1" 
                       VerticalScrollBarVisibility="Visible" 
                       HorizontalScrollBarVisibility="Visible"
                       >
 
-            <Border Margin="5" BorderBrush="Black" BorderThickness="1" PreviewMouseWheel="Border_PreviewMouseWheel">
+                    <Border Margin="5" BorderBrush="Black" BorderThickness="1" PreviewMouseWheel="Border_PreviewMouseWheel">
 
-                <Grid Name="grid" RenderTransformOrigin="0.5,0.5" Margin="15">
-                    <Grid.LayoutTransform>
-                        <TransformGroup>
-                            <ScaleTransform x:Name="scaleTransform"/>
-                        </TransformGroup>
-                    </Grid.LayoutTransform>
+                        <Grid Name="grid" RenderTransformOrigin="0.5,0.5" Margin="15">
+                            <Grid.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform x:Name="scaleTransform"/>
+                                </TransformGroup>
+                            </Grid.LayoutTransform>
 
-                </Grid>
+                        </Grid>
 
-            </Border>
+                    </Border>
 
-        </ScrollViewer>
+                </ScrollViewer>
 
+            </Grid>
+        </TabItem>
+        
+        <TabItem Width="100" Header="Perlin noise">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="334*"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel>
+                    <Button x:Name="drawPerlin" Click="drawPerlin_Click" Content="Draw Perlin" Margin="0,0,0.4,0"/>
+                </StackPanel>
 
-    </Grid>
+                <ScrollViewer Name="scrollViewerNoise" Grid.Column="1" 
+                      VerticalScrollBarVisibility="Visible" 
+                      HorizontalScrollBarVisibility="Visible"
+                      >
+
+                    <Border Margin="5" BorderBrush="Black" BorderThickness="1">
+
+                        <Grid Name="gridNoise" RenderTransformOrigin="0.5,0.5" Margin="15">
+                            <Grid.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform x:Name="scaleTransformNoise"/>
+                                </TransformGroup>
+                            </Grid.LayoutTransform>
+
+                            <UniformGrid  Name="uniformGrid">
+                                
+                            </UniformGrid>
+                            
+                        </Grid>
+
+                    </Border>
+
+                </ScrollViewer>
+
+            </Grid>
+        </TabItem>
+        
+    </TabControl>
+    
+    
 </Window>

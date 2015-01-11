@@ -11,7 +11,7 @@ using terraformerIsland.DiamondAlghorithm;
 
 namespace terraformerIsland.PaintController
 {
-    class Painter
+    class PainterMatrix
     {
         private static DrawingBrush mainDrawingBrush;
         private static DrawingGroup mainDrawingGroup;
@@ -64,9 +64,9 @@ namespace terraformerIsland.PaintController
         }
         internal static void DrawMatrix(Grid grid, DiamondMatrix diamondMatrix)
         {
-            Painter.CreateDrawingBrush(grid, 0.3);
+            PainterMatrix.CreateDrawingBrush(grid, 0.3);
             
-            Painter.DrawGrid(grid, diamondMatrix.Size - 1 );
+            PainterMatrix.DrawGrid(grid, diamondMatrix.Size - 1 );
 
             GeometryDrawing geometryDrawing = new GeometryDrawing();
             GeometryGroup geometryGroup = new GeometryGroup();
@@ -81,6 +81,13 @@ namespace terraformerIsland.PaintController
             mainDrawingGroup.Children.Add(geometryDrawing);
 
             DrawingMatrixText(diamondMatrix);
+
+            mainDrawingBrush.Freeze();
+            mainDrawingGroup.Freeze();
+            geometryDrawing.Freeze();
+
+            grid.Background = mainDrawingBrush;
+
         }
 
         private static void DrawingMatrixText(DiamondMatrix diamondMatrix)

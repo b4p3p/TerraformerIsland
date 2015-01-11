@@ -61,6 +61,21 @@ namespace terraformerIsland
             }
         }
 
+        public int TileSize 
+        { 
+            get
+            {
+                try
+                {
+                    return int.Parse(txtTileSize.Text);
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+            }
+        }
+
         Point? lastCenterPositionOnTarget;
         Point? lastMousePositionOnTarget;
         Point? lastDragPoint;
@@ -79,17 +94,17 @@ namespace terraformerIsland
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            cmdInizializza_Click(null, null);
+            cmdInit_Click(null, null);
         }
 
-        private void cmdInizializza_Click(object sender, RoutedEventArgs e)
+        private void cmdInit_Click(object sender, RoutedEventArgs e)
         {
             if (ControlForm()) return; 
 
-            diamondSeeder = new DiamondSeeder(4, WaterPercentage);
+            diamondSeeder = new DiamondSeeder(TileSize, WaterPercentage);
             diamondMatrix = new DiamondMatrix(Size + 1, diamondSeeder);
 
-            Painter.DrawMatrix(grid, diamondMatrix);
+            PainterMatrix.DrawMatrix(grid, diamondMatrix);
 
         }
 
@@ -104,6 +119,12 @@ namespace terraformerIsland
             if (this.WaterPercentage == -1)
             {
                 Message.ShowMessage("Water percentage is not a number");
+                return true;
+            }
+
+            if (this.TileSize == -1)
+            {
+                Message.ShowMessage("TileSize is not a number");
                 return true;
             }
 
@@ -237,13 +258,18 @@ namespace terraformerIsland
         private void cmdNext_Click(object sender, RoutedEventArgs e)
         {
             diamondMatrix.Next();
-            Painter.DrawMatrix(grid, diamondMatrix);
+            PainterMatrix.DrawMatrix(grid, diamondMatrix);
         }
 
         private void cmdGO_Click(object sender, RoutedEventArgs e)
         {
             diamondMatrix.Elaborate();
-            Painter.DrawMatrix(grid, diamondMatrix);
+            //PainterMatrix.DrawMatrix(grid, diamondMatrix);
+        }
+
+        private void drawPerlin_Click(object sender, RoutedEventArgs e)
+        {
+            PainterNoise.Draw( uniformGrid, diamondMatrix);
         }
     }
 }

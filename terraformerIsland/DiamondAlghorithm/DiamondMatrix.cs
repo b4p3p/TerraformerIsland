@@ -223,5 +223,30 @@ namespace terraformerIsland.DiamondAlghorithm
         }
 
         
+        internal byte[] ToArray()
+        {
+            double maxValue = GetMaxValue();
+            byte[] ris = new byte[ (Size+1) * (Size+1) ];
+            int cont = 0;
+
+            for (int r = 0; r < Size; r++)
+            {
+                for (int c = 0; c < Size; c++)
+                {
+                    double x = (255 * matrix[r,c].Value) / maxValue;
+                    ris[cont] = (byte)(255 - x);
+                    cont++;
+                }
+            }
+
+            return ris;
+        
+        }
+
+        private double GetMaxValue()
+        {
+            return (from DiamondCell item in matrix
+                    select item.Value).Max();
+        }
     }
 }
