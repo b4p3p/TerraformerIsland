@@ -7,7 +7,7 @@ using terraformerIsland.DiamondAlghorithm.Utils;
 
 namespace terraformerIsland.DiamondAlghorithm
 {
-    class DiamondSeeder
+    public class DiamondSeeder
     {
         private Random rnd = new Random();
         private int tileSize;
@@ -26,6 +26,7 @@ namespace terraformerIsland.DiamondAlghorithm
             foreach (DiamondCell item in listKeyCell)
             {
                 item.SetValue( NewValue (item.Level) );
+                item.IsEmpty = false;
             }
         }
 
@@ -38,14 +39,20 @@ namespace terraformerIsland.DiamondAlghorithm
             int lastCol = lastRow;
 
             List<DiamondCell> list = new List<DiamondCell>();
-            foreach (DiamondCell item in diamondMatrix.GetMatrix())
+
+            for (int r = 0; r < diamondMatrix.Size; r++)
             {
-                if (item.Row < firstRow || item.Row > lastRow) continue;
-                if (item.Column < firstCol || item.Column > lastCol) continue;
-                if (item.Row % tileSize != 0) continue;
-                if (item.Column % tileSize != 0) continue;
-                list.Add(item);
+                for (int c = 0; c < diamondMatrix.Size; c++)
+                {
+                    DiamondCell item = diamondMatrix.GetCell(r, c);
+                    if (item.Row < firstRow || item.Row > lastRow) continue;
+                    if (item.Column < firstCol || item.Column > lastCol) continue;
+                    if (item.Row % tileSize != 0) continue;
+                    if (item.Column % tileSize != 0) continue;
+                    list.Add(item);
+                }
             }
+
             return list;
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,11 +24,13 @@ namespace terraformerIsland
     /// </summary>
     public partial class MainWindow : Window
     {
+        public delegate void DrawMatrixCallback(Grid grid, DiamondMatrix matrix);
+
         private double startWidth = 0;
         private double startHeight = 0;
 
-        private DiamondMatrix diamondMatrix;
-        private DiamondSeeder diamondSeeder;
+        public static DiamondMatrix diamondMatrix;
+        public static DiamondSeeder diamondSeeder;
 
         public int Size 
         {
@@ -35,6 +38,21 @@ namespace terraformerIsland
                 try
                 {
                     return int.Parse(txtSize.Text);
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public float WaterPercentage
+        {
+            get
+            {
+                try
+                {
+                    return float.Parse(txtWater.Text);
                 }
                 catch (Exception)
                 {
@@ -62,30 +80,17 @@ namespace terraformerIsland
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             cmdInizializza_Click(null, null);
-            cmdDrawGrid_Click(null, null);
         }
 
         private void cmdInizializza_Click(object sender, RoutedEventArgs e)
         {
-            Painter.CreateDrawingBrush(0.3);
-            cmdDrawGrid_Click(null, null);
+            if (ControlForm()) return; 
 
-            diamondSeeder = new DiamondSeeder(4, 0.3f);
-            diamondMatrix = new DiamondMatrix(Size, diamondSeeder);
+            diamondSeeder = new DiamondSeeder(4, WaterPercentage);
+            diamondMatrix = new DiamondMatrix(Size + 1, diamondSeeder);
 
-            Painter.DrawMatrix(diamondMatrix);
+            Painter.DrawMatrix(grid, diamondMatrix);
 
-        }
-
-        private void cmdDrawGrid_Click(object sender, RoutedEventArgs e)
-        {
-            if ( ControlForm() ) return; 
-            Painter.DrawGrid(grid, Size );
-        }
-
-        private void test_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
 
         public bool ControlForm()
@@ -95,6 +100,13 @@ namespace terraformerIsland
                 Message.ShowMessage("Size is not a number");
                 return true;
             }
+
+            if (this.WaterPercentage == -1)
+            {
+                Message.ShowMessage("Water percentage is not a number");
+                return true;
+            }
+
             return false;
         }
 
@@ -221,5 +233,17 @@ namespace terraformerIsland
         }
 
         #endregion Eventi Zoom
+
+        private void cmdNext_Click(object sender, RoutedEventArgs e)
+        {
+            diamondMatrix.Next();
+            Painter.DrawMatrix(grid, diamondMatrix);
+        }
+
+        private void cmdGO_Click(object sender, RoutedEventArgs e)
+        {
+            diamondMatrix.Elaborate();
+            Painter.DrawMatrix(grid, diamondMatrix);
+        }
     }
 }

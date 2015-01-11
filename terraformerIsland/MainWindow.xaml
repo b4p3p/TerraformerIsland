@@ -9,19 +9,25 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="334*"/>
         </Grid.ColumnDefinitions>
-        
+
         <StackPanel Orientation="Vertical" Grid.Column="0">
-            
+
             <Label HorizontalAlignment="Center">Zoom</Label>
             <Slider x:Name="zoomSlider" Minimum="1" Maximum="2" Value="1" LargeChange="0.2"></Slider>
-            
+
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <Label Content="Size:"></Label>
-                <TextBox Name="txtSize" Text="16" Width="50" TextAlignment="Center" VerticalAlignment="Center"></TextBox>    
+                <Label Content="Size:" Width="80"></Label>
+                <TextBox Name="txtSize" Text="16" Width="50" TextAlignment="Center" VerticalAlignment="Center"></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Content="Water:" Width="80"></Label>
+                <TextBox Name="txtWater" Text="0,3" Width="50" TextAlignment="Center" VerticalAlignment="Center"></TextBox>
             </StackPanel>
             <Button Name="cmdInizializza" Click="cmdInizializza_Click" Content="Inizializza"></Button>
-            <Button Name="cmdDrawGrid" Click="cmdDrawGrid_Click"  Content="Griglia"></Button>
-            <Button x:Name="test"  Content="test" Click="test_Click"/>
+            <Button Name="cmdNext" Click="cmdNext_Click" Content="Next 1" 
+                    Margin="0,10"></Button>
+            <Button Name="cmdGO" Click="cmdGO_Click" Content="GO" ></Button>
         </StackPanel>
 
         <ScrollViewer Name="scrollViewer" Grid.Column="1" 
@@ -30,20 +36,20 @@
                       >
 
             <Border Margin="5" BorderBrush="Black" BorderThickness="1" PreviewMouseWheel="Border_PreviewMouseWheel">
-            
+
                 <Grid Name="grid" RenderTransformOrigin="0.5,0.5" Margin="15">
                     <Grid.LayoutTransform>
                         <TransformGroup>
                             <ScaleTransform x:Name="scaleTransform"/>
                         </TransformGroup>
                     </Grid.LayoutTransform>
-                                        
+
                 </Grid>
 
             </Border>
 
         </ScrollViewer>
 
-      
+
     </Grid>
 </Window>

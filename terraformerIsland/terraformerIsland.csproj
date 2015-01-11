@@ -64,6 +64,8 @@
     <Compile Include="DiamondAlghorithm\DiamondCell.cs" />
     <Compile Include="DiamondAlghorithm\DiamondMatrix.cs" />
     <Compile Include="DiamondAlghorithm\DiamondSeeder.cs" />
+    <Compile Include="DiamondAlghorithm\MDP_Point.cs" />
+    <Compile Include="DiamondAlghorithm\Selector.cs" />
     <Compile Include="DiamondAlghorithm\Utils\DiamondConverter.cs" />
     <Compile Include="MessageController\Message.cs" />
     <Compile Include="PaintController\Painter.cs" />
